@@ -37,19 +37,38 @@ function ProfileSetup() {
 
   const validateStep = () => {
     const newErrors = {};
+    const urlPattern = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
 
     if (currentStep === 1) {
       if (!profileData.instituteName.trim()) {
         newErrors.instituteName = 'Institute name is required';
       }
-    } else if (currentStep === 2 && userType === 'teacher') {
-      // Validate mentoring fields for teachers
-      if (!profileData.mentoring.trim()) {
-        newErrors.mentoring = 'Please enter 3 mentoring fields';
-      } else {
-        const mentoringArray = profileData.mentoring.split(',').map(m => m.trim()).filter(m => m);
-        if (mentoringArray.length !== 3) {
-          newErrors.mentoring = 'Please enter exactly 3 fields separated by commas';
+    } else if (currentStep === 2) {
+      if (userType === 'teacher') {
+        // Validate mentoring fields for teachers
+        if (!profileData.mentoring.trim()) {
+          newErrors.mentoring = 'Please enter 3 mentoring fields';
+        } else {
+          const mentoringArray = profileData.mentoring.split(',').map(m => m.trim()).filter(m => m);
+          if (mentoringArray.length !== 3) {
+            newErrors.mentoring = 'Please enter exactly 3 fields separated by commas';
+          }
+        }
+      } else if (userType === 'eventOrganizer') {
+        // Validate social media for event organizers
+        if (profileData.linkedin && !urlPattern.test(profileData.linkedin)) {
+          newErrors.linkedin = 'Please enter a valid LinkedIn URL (e.g. https://linkedin.com/...)';
+        }
+        if (profileData.instagram && !urlPattern.test(profileData.instagram)) {
+          newErrors.instagram = 'Please enter a valid Instagram URL (e.g. https://instagram.com/...)';
+        }
+      } else if (userType === 'student') {
+        // Validate social media for students
+        if (profileData.github && !urlPattern.test(profileData.github)) {
+          newErrors.github = 'Please enter a valid GitHub URL';
+        }
+        if (profileData.linkedin && !urlPattern.test(profileData.linkedin)) {
+          newErrors.linkedin = 'Please enter a valid LinkedIn URL';
         }
       }
     } else if (currentStep === 3) {
@@ -171,6 +190,7 @@ function ProfileSetup() {
                   onChange={handleInputChange}
                   placeholder="LinkedIn URL"
                 />
+                {errors.linkedin && <p className="error-message">{errors.linkedin}</p>}
               </div>
               <div className="form-group">
                 <input
@@ -181,6 +201,7 @@ function ProfileSetup() {
                   onChange={handleInputChange}
                   placeholder="Instagram URL"
                 />
+                {errors.instagram && <p className="error-message">{errors.instagram}</p>}
               </div>
               <button
                 className="arrow-btn"
@@ -206,8 +227,9 @@ function ProfileSetup() {
                 className="form-input"
                 value={profileData.github}
                 onChange={handleInputChange}
-                placeholder="GitHub"
+                placeholder="GitHub URL"
               />
+              {errors.github && <p className="error-message">{errors.github}</p>}
             </div>
             <div className="form-group">
               <input
@@ -216,8 +238,9 @@ function ProfileSetup() {
                 className="form-input"
                 value={profileData.linkedin}
                 onChange={handleInputChange}
-                placeholder="LinkedIn"
+                placeholder="LinkedIn URL"
               />
+              {errors.linkedin && <p className="error-message">{errors.linkedin}</p>}
             </div>
             <div className="form-group">
               <input
@@ -226,7 +249,7 @@ function ProfileSetup() {
                 className="form-input"
                 value={profileData.discord}
                 onChange={handleInputChange}
-                placeholder="Discord"
+                placeholder="Discord Username"
               />
             </div>
             <button

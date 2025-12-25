@@ -7,6 +7,8 @@ import Welcome from './pages/Welcome';
 import ProfileSetup from './pages/ProfileSetup';
 import Profile from './pages/Profile';
 import HomePage from './pages/HomePage';
+import SyncPage from './pages/SyncPage';
+import CreatePage from './pages/CreatePage';
 import './App.css';
 
 function App() {
@@ -22,6 +24,12 @@ function App() {
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/home" element={<HomePage />} />
+
+          {/* New Feature Routes */}
+          <Route path="/my-sync" element={<SyncPage type="my-sync" />} />
+          <Route path="/mentor-sync" element={<SyncPage type="mentor-sync" />} />
+          <Route path="/mentee-sync" element={<SyncPage type="mentee-sync" />} />
+          <Route path="/create" element={<CreatePage />} />
         </Routes>
       </AuthProvider>
     </Router>
