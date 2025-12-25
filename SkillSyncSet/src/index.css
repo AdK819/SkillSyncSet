@@ -598,6 +598,7 @@ textarea.form-input {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -679,6 +680,11 @@ textarea.form-input {
   background-color: var(--bg-secondary);
 }
 
+/* Navbar Spacer */
+.navbar-spacer {
+  width: 50px;
+}
+
 /* Navbar Logo */
 .navbar-logo {
   display: flex;
@@ -700,10 +706,30 @@ textarea.form-input {
 /* Home Content */
 .home-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 80px);
   padding: var(--spacing-xl);
+}
+
+.welcome-logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 2rem;
+  animation: fadeInScale 0.8s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .welcome-title {
@@ -711,7 +737,7 @@ textarea.form-input {
   font-weight: 700;
   color: var(--text-primary);
   text-align: center;
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn 0.8s ease 0.2s both;
 }
 
 @keyframes fadeIn {
@@ -719,6 +745,7 @@ textarea.form-input {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -734,6 +761,11 @@ textarea.form-input {
   .search-container {
     margin: 0 1rem;
     max-width: 300px;
+  }
+
+  .welcome-logo {
+    width: 150px;
+    margin-bottom: 1.5rem;
   }
 
   .welcome-title {

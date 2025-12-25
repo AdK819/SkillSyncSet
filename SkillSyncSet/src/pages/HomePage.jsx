@@ -99,15 +99,28 @@ function HomePage() {
                     </button>
                 </form>
 
-                {/* Logo on the right */}
-                <div className="navbar-logo">
-                    <img src="/logo.png" alt="SkillSyncSet Logo" className="logo-image" />
-                </div>
+                {/* Logo on the right - Only show for authenticated users */}
+                {isAuthenticated && (
+                    <div className="navbar-logo">
+                        <img src="/logo.png" alt="SkillSyncSet Logo" className="logo-image" />
+                    </div>
+                )}
+
+                {/* Spacer for unauthenticated users to balance navbar */}
+                {!isAuthenticated && <div className="navbar-spacer"></div>}
             </nav>
 
             {/* Main Content */}
             <div className="home-content">
-                <h1 className="welcome-title">Welcome to SkillSyncSet!!</h1>
+                {/* Show logo and welcome only for unauthenticated users */}
+                {!isAuthenticated && (
+                    <>
+                        <img src="/logo.png" alt="SkillSyncSet Logo" className="welcome-logo" />
+                        <h1 className="welcome-title">Welcome to SkillSyncSet!!</h1>
+                    </>
+                )}
+
+                {/* Authenticated users see empty/plain content */}
             </div>
         </div>
     );
