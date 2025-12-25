@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import Welcome from './pages/Welcome';
 import ProfileSetup from './pages/ProfileSetup';
 import Profile from './pages/Profile';
+import HomePage from './pages/HomePage';
 import './App.css';
 
 function App() {
@@ -13,12 +14,14 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/select-type" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </AuthProvider>
     </Router>

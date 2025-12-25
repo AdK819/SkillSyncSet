@@ -120,6 +120,8 @@ function Profile() {
     if (validateEditableFields()) {
       sessionStorage.setItem('editableData', JSON.stringify(editableData));
       setIsEditing(false);
+      // Navigate to home page after saving
+      navigate('/home');
     }
   };
 
