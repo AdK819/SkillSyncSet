@@ -1,0 +1,284 @@
+.profile-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.profile-box {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  position: relative;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2196F3;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-picture-section {
+  margin-bottom: 20px;
+}
+
+.profile-pic-upload,
+.profile-pic-display {
+  display: block;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2196F3;
+}
+
+.profile-pic-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  border: 3px solid #2196F3;
+}
+
+.profile-pic-upload:hover .profile-pic-placeholder {
+  background-color: #d0d0d0;
+}
+
+.qualities-section {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quality-tag {
+  background-color: #E3F2FD;
+  color: #2196F3;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-info {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+.info-row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 120px;
+}
+
+.info-value {
+  color: #333;
+  flex: 1;
+}
+
+.additional-profiles {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+.additional-profiles h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.profile-link {
+  display: flex;
+  padding: 8px 0;
+}
+
+.link-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 100px;
+}
+
+.link-value {
+  color: #2196F3;
+  flex: 1;
+  word-break: break-all;
+}
+
+.editable-section {
+  margin-bottom: 25px;
+}
+
+.question-box {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+.question-box label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.question-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.question-box textarea:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.answer-text {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+    padding-top: 20px;
+  }
+
+  .profile-box {
+    padding: 25px;
+  }
+
+  .edit-btn {
+    top: 15px;
+    right: 15px;
+  }
+
+  .profile-pic,
+  .profile-pic-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+
+  .info-label {
+    min-width: 90px;
+    font-size: 14px;
+  }
+
+  .info-value {
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .save-btn {
+    width: 100%;
+  }
+}
+
+/* Tablet and larger phones */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .profile-box {
+    max-width: 600px;
+  }
+}

@@ -1,0 +1,8 @@
+/* App-specific styles - most styles are now in index.css */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Any app-specific overrides can go here */
