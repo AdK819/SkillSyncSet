@@ -82,12 +82,12 @@ function Profile() {
     const newErrors = {};
 
     if (userData.userType === 'student') {
-      if (!editableData.skillset.trim()) {
-        newErrors.skillset = 'Please describe your skillset';
+      if (!editableData.skillset.trim() || editableData.skillset.trim().length < 10) {
+        newErrors.skillset = 'Please describe your skillset (min 10 chars)';
       }
 
-      if (!editableData.nextGoal.trim()) {
-        newErrors.nextGoal = 'Please describe what you plan to tackle next';
+      if (!editableData.nextGoal.trim() || editableData.nextGoal.trim().length < 10) {
+        newErrors.nextGoal = 'Please describe what you plan to tackle next (min 10 chars)';
       }
     } else if (userData.userType === 'teacher') {
       if (!editableData.mentoring.trim()) {
@@ -99,16 +99,16 @@ function Profile() {
         }
       }
 
-      if (!editableData.whereToMeet.trim()) {
-        newErrors.whereToMeet = 'Please specify where to meet you';
+      if (!editableData.whereToMeet.trim() || editableData.whereToMeet.trim().length < 10) {
+        newErrors.whereToMeet = 'Please specify where to meet you (min 10 chars)';
       }
 
-      if (!editableData.availability.trim()) {
-        newErrors.availability = 'Please specify when you will be available';
+      if (!editableData.availability.trim() || editableData.availability.trim().length < 10) {
+        newErrors.availability = 'Please specify when you will be available (min 10 chars)';
       }
     } else if (userData.userType === 'eventOrganizer') {
-      if (!editableData.committeeAims.trim()) {
-        newErrors.committeeAims = 'Please describe what this committee aims for';
+      if (!editableData.committeeAims.trim() || editableData.committeeAims.trim().length < 10) {
+        newErrors.committeeAims = 'Please describe what this committee aims for (min 10 chars)';
       }
     }
 

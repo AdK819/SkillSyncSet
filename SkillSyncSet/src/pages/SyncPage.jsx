@@ -15,22 +15,24 @@ function SyncPage({ type }) {
             case 'my-sync': return 'My Sync';
             case 'mentor-sync': return 'Mentor Sync';
             case 'mentee-sync': return 'Mentee Sync';
-            case 'organizer-sync': return 'My Sync'; // For organizer
+            case 'organizer-sync': return 'My Sync';
             default: return 'Sync';
         }
     };
 
     const getMockData = () => {
-        // Return mock profiles
         return [
-            { id: 1, name: 'Jane Doe', role: 'Student', institute: 'ABC College' },
-            { id: 2, name: 'John Smith', role: 'Teacher', institute: 'XYZ University' },
-            { id: 3, name: 'Debug Club', role: 'Event Organizer', institute: 'Tech Institute' }
+            { id: 1, name: 'Alice Johnson', role: 'Student', institute: 'ABC College' },
+            { id: 2, name: 'Bob Williams', role: 'Student', institute: 'ABC College' },
+            { id: 3, name: 'Dr. Smith', role: 'Teacher', institute: 'XYZ University' },
+            { id: 4, name: 'Prof. Davis', role: 'Teacher', institute: 'Tech Institute' },
+            { id: 5, name: 'Charlie Brown', role: 'Student', institute: 'Tech Institute' },
+            { id: 6, name: 'Ms. Wilson', role: 'Teacher', institute: 'ABC College' }
         ];
     };
 
     const renderContent = () => {
-        // If event organizer and viewing "My Sync", show specific layout
+        // Event Organizer "My Sync"
         if (userType === 'eventOrganizer' && type === 'my-sync') {
             return (
                 <div className="sync-container">
@@ -50,17 +52,44 @@ function SyncPage({ type }) {
             );
         }
 
-        const data = getMockData();
+        // Filter Logic
+        const allData = getMockData();
+        let filteredData = [];
+
+        if (userType === 'student') {
+            if (type === 'my-sync') {
+                // Student My Sync -> Show STUDENTS
+                filteredData = allData.filter(p => p.role === 'Student');
+            } else if (type === 'mentor-sync') {
+                // Student Mentor Sync -> Show TEACHERS
+                filteredData = allData.filter(p => p.role === 'Teacher');
+            }
+        } else if (userType === 'teacher') {
+            if (type === 'my-sync') {
+                // Teacher My Sync -> Show TEACHERS
+                filteredData = allData.filter(p => p.role === 'Teacher');
+            } else if (type === 'mentee-sync') {
+                // Teacher Mentee Sync -> Show STUDENTS
+                filteredData = allData.filter(p => p.role === 'Student');
+            }
+        } else {
+            // Default fallback
+            filteredData = allData;
+        }
 
         return (
             <div className="profiles-grid">
-                {data.map(profile => (
-                    <div key={profile.id} className="profile-card card mb-3">
-                        <h4>{profile.name}</h4>
-                        <p className="text-muted">{profile.role} at {profile.institute}</p>
-                        <button className="btn btn-primary btn-sm">Follow Back</button>
-                    </div>
-                ))}
+                {filteredData.length === 0 ? (
+                    <p>No profiles found.</p>
+                ) : (
+                    filteredData.map(profile => (
+                        <div key={profile.id} className="profile-card card mb-3">
+                            <h4>{profile.name}</h4>
+                            <p className="text-muted">{profile.role} at {profile.institute}</p>
+                            <button className="btn btn-primary btn-sm">Following</button>
+                        </div>
+                    ))
+                )}
             </div>
         );
     };
